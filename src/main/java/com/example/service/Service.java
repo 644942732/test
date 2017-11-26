@@ -26,12 +26,15 @@ public class Service {
 
 	public void list() {
 		System.out.println("已签到的用户如下>>>>>>>>>>>");
-		System.out.println(list);
+//		去重
+		List<String> list2 = list.stream().distinct().collect(Collectors.toList());
+		System.out.println(list2);
 	}
-	
 
 	public void count() {
+//		根据姓名分组统计签到次数
 		Map<String, Long> map = list.stream().collect(Collectors.groupingBy(String::toString, Collectors.counting()));
+		
 		System.out.println("共有" + map.size() + "人签到");
 		System.out.println("本月每人的签到次数如下");
 		System.out.println(map);
